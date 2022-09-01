@@ -1,0 +1,38 @@
+##########################################
+#                                        # 
+#              Quiz 3                    #
+#                                        #
+# Idalia Hernandez L y Marieth Guillen G #
+#                                        #
+##########################################
+
+# punto 1 
+# Calcular el valor mínimo del vector generado con:
+
+from scipy.stats import binom
+data_binom = binom.rvs(n=10,p=0.8,size=1000)
+valor_min = data_binom[0]
+for numero in data_binom[1:]:
+    if numero < valor_min:
+        valor_min = numero
+print(f"El valor minimo del vector generado es: {valor_min}")
+print(data_binom)
+
+# punto 2
+# Calcular el promedio y la desviación estándar del vector data binom nan 
+# (omitir los valores no numéricos nan). Generar el vector data binom nan 
+# a partir del vector del punto anterior así:
+
+import numpy as np
+indices = np.random.permutation(len(data_binom))
+indices = indices[:100]
+data_binom_nan = data_binom.copy().astype(np.double)
+data_binom_nan[indices] = np.nan
+
+promedio = np.nanmean(data_binom_nan) # para hallar el promedio usando np.nan para excluir los nan
+desviacion = np.nanstd(data_binom_nan) # para hallar la desviación usando np.nan para excluir los nan
+
+print(f"El valor es: {promedio} y la desviacion estandar es {desviacion}")
+print(indices)
+print("X=",len(data_binom_nan))
+print(data_binom_nan)
